@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -21,7 +22,11 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
+      darkTheme: ThemeData(
+        primaryColor: Colors.amber
+      ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -70,7 +75,18 @@ class _MyHomePageState extends State<MyHomePage> {
           const SizedBox(height: 10,),
 
           //Image
-          Image.asset("assets/images.jpg"),
+          Container(
+            height: 250,
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(25.0),
+              image: const DecorationImage(
+                image: AssetImage("assets/images.jpg"),
+                fit: BoxFit.fill
+              )
+            ),
+
+          ),
           const SizedBox(height: 10,),
 
           //Text d'information
