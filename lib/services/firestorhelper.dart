@@ -13,8 +13,10 @@ class FirestoreHelper{
 
 
   //Méthode connexion
-  connect(String email, String password){
-      auth.signInWithEmailAndPassword(email: email, password: password);
+  Future<MyUtilisateur>connect(String email, String password)async {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
+      String uid = userCredential.user!.uid;
+      return getUser(uid);
   }
 
 

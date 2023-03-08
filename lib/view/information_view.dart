@@ -15,6 +15,17 @@ class _InformationViewState extends State<InformationView> {
   TextEditingController password = TextEditingController();
   TextEditingController prenom = TextEditingController();
   TextEditingController nom = TextEditingController();
+
+
+  //Fonction
+  popUp(){
+    showDialog(
+        context: context,
+        builder: (context){
+
+        }
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,12 +108,24 @@ class _InformationViewState extends State<InformationView> {
 
         ElevatedButton(
             onPressed: (){
-              FirestoreHelper().register(mail.text, password.text, nom.text, prenom.text).then((value){
-                //si cela se passe bien
-              }).catchError((onError){
-                //S'il y a un problème
+              if(selection[0]==false){
+                FirestoreHelper().register(mail.text, password.text, nom.text, prenom.text).then((value){
+                  //si cela se passe bien
+                }).catchError((onError){
+                  //S'il y a un problème
+                  popUp();
 
-              });
+                });
+              }
+              else
+                {
+                  FirestoreHelper().connect(mail.text, password.text).then((value){
+
+                  }).catchError((onError){
+                    popUp();
+                  });
+                }
+
             },
             child: Text("Validation")
         )
