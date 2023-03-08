@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:m2ilw/view/information_view.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -106,6 +107,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
                 onPressed: (){
                   print("J'ai cliqué");
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context){
+                        return InformationView();
+                      }
+                  ));
                 },
                 child: const Text("Bienvenue",
                 style: TextStyle(fontSize: 25),
