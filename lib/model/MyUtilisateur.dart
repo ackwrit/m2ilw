@@ -7,11 +7,11 @@ class MyUtilisateur {
   late String prenom;
   late String mail;
   String? avatar;
-  late DateTime birhday;
+  DateTime? birhday;
 
 
   int get age {
-    return DateTime.now().year - birhday.year;
+    return DateTime.now().year - birhday!.year;
   }
 
   //Constructeurs

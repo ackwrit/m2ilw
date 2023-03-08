@@ -102,11 +102,11 @@ class _MyHomePageState extends State<MyHomePage> {
             width: double.infinity,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.purple,
+                backgroundColor: Colors.purple,
                 shape: StadiumBorder()
               ),
                 onPressed: (){
-                  print("J'ai cliqué");
+
                   Navigator.push(context, MaterialPageRoute(
                       builder: (context){
                         return InformationView();
