@@ -10,10 +10,10 @@ class MyInformation extends StatefulWidget {
 class _MyInformationState extends State<MyInformation> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+    return  Column(
+
         children: [
+          const SizedBox(height: 70,),
           CircleAvatar(
             radius: 60,
             backgroundImage: NetworkImage(moi.avatar!),
@@ -24,7 +24,7 @@ class _MyInformationState extends State<MyInformation> {
 
           Text(moi.mail)
         ],
-      ),
+
     );
   }
 }
