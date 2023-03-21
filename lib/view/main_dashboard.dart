@@ -10,6 +10,7 @@ class MainDashBoard extends StatefulWidget {
 class _MainDashBoardState extends State<MainDashBoard> {
   //variable
   int indexNavigation = 0;
+  PageController controllerNavigation = PageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +20,7 @@ class _MainDashBoardState extends State<MainDashBoard> {
         onTap: (value){
           setState(() {
             indexNavigation = value;
+            controllerNavigation.jumpToPage(value);
           });
         },
         currentIndex: indexNavigation,
@@ -37,7 +39,20 @@ class _MainDashBoardState extends State<MainDashBoard> {
   }
 
   Widget bodyPage(){
-    return Text("Page vide");
+    return PageView(
+      controller: controllerNavigation,
+      onPageChanged: (value){
+        setState(() {
+          controllerNavigation.jumpToPage(value);
+          indexNavigation = value;
+        });
+      },
+      children: [
+        Text("first Page"),
+        Text("Second page"),
+
+      ],
+    );
   }
 }
 

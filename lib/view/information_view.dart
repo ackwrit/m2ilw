@@ -77,7 +77,7 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
                 children: [
                   Lottie.network("https://assets7.lottiefiles.com/packages/lf20_p1laie4m.json",
                     repeat: false,
-                    controller: myAnimationController,
+
                     onLoaded: (composition){
                     setState((){
                       myAnimationController.forward();
@@ -88,13 +88,16 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
                   ),
 
                   //barre de chargement
-                  LinearProgressIndicator(
-                    valueColor: const AlwaysStoppedAnimation(Colors.green),
-                    backgroundColor: Colors.white,
-                    color: Colors.blue,
-                    value: myAnimationController.value,
-                    minHeight: 10,
-                    semanticsValue: "${myAnimationController.duration!.inSeconds.toInt()}",
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: LinearProgressIndicator(
+                      valueColor: const AlwaysStoppedAnimation(Colors.green),
+                      backgroundColor: Colors.white,
+                      color: Colors.green,
+                      value: myAnimationController.value,
+                      minHeight: 10,
+                      semanticsValue: "${myAnimationController.duration!.inSeconds.toInt()}",
+                    ),
                   ),
                 ],
               ),
@@ -110,7 +113,7 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
                 children: [
                   Lottie.network("https://assets7.lottiefiles.com/packages/lf20_p1laie4m.json",
                       repeat: false,
-                      controller: myAnimationController,
+                      //controller: myAnimationController,
                       onLoaded: (composition){
                         setState((){
                           myAnimationController.forward();
