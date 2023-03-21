@@ -11,8 +11,9 @@ class InformationView extends StatefulWidget {
   State<InformationView> createState() => _InformationViewState();
 }
 
-class _InformationViewState extends State<InformationView> {
+class _InformationViewState extends State<InformationView> with TickerProviderStateMixin {
   //variables
+  late AnimationController myAnimationController;
   List<bool> selection = [true,false];
   TextEditingController mail = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -61,6 +62,58 @@ class _InformationViewState extends State<InformationView> {
         }
     );
   }
+
+  popUpReussi(){
+    showDialog(
+        context: context,
+        builder: (context){
+          //déterminer sur quel plateforme on est
+          if(Platform.isIOS){
+            return CupertinoAlertDialog(
+              title: const Text("Réussi"),
+              content : Column(
+                children: [
+                  Lottie.network("https://assets7.lottiefiles.com/packages/lf20_p1laie4m.json"),
+                  //barre de chargement
+                  LinearProgressIndicator(
+                    valueColor: const AlwaysStoppedAnimation(Colors.green),
+                    value: myAnimationController.value,
+                  ),
+                ],
+              ),
+
+
+            );
+          }
+          else
+          {
+            return AlertDialog(
+              title: const Text("Réussie"),
+              content : Lottie.network("https://assets7.lottiefiles.com/packages/lf20_p1laie4m.json"),
+
+
+            );
+          }
+
+        }
+    );
+
+  }
+
+  @override
+  void initState() {
+    myAnimationController = AnimationController(
+        vsync: this,
+      duration: const Duration(seconds: 10),
+
+    )..addListener(() {
+      setState(() {
+
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -145,7 +198,7 @@ class _InformationViewState extends State<InformationView> {
             onPressed: (){
               if(selection[0]==false){
                 FirestoreHelper().register(mail.text, password.text, nom.text, prenom.text).then((value){
-                  //si cela se passe bien
+                  popUpReussi();
                 }).catchError((onError){
                   //S'il y a un problème
                   popUp();
@@ -155,7 +208,7 @@ class _InformationViewState extends State<InformationView> {
               else
                 {
                   FirestoreHelper().connect(mail.text, password.text).then((value){
-
+                      popUpReussi();
                   }).catchError((onError){
                     popUp();
                   });
