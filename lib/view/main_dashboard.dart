@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m2ilw/controller/list_personne.dart';
 
 class MainDashBoard extends StatefulWidget {
   const MainDashBoard({Key? key}) : super(key: key);
@@ -47,8 +48,8 @@ class _MainDashBoardState extends State<MainDashBoard> {
           indexNavigation = value;
         });
       },
-      children: [
-        Text("first Page"),
+      children: const [
+        ListPersonne(),
         Text("Second page"),
 
       ],

@@ -23,6 +23,7 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
   TextEditingController nom = TextEditingController();
 
 
+
   //Fonction
   popUp(){
     showDialog(
@@ -89,6 +90,7 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
 
                   //barre de chargement
                   Padding(
+
                     padding: const EdgeInsets.all(10.0),
                     child: LinearProgressIndicator(
                       valueColor: const AlwaysStoppedAnimation(Colors.green),
@@ -180,6 +182,7 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
