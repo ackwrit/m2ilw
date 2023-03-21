@@ -198,6 +198,7 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
             onPressed: (){
               if(selection[0]==false){
                 FirestoreHelper().register(mail.text, password.text, nom.text, prenom.text).then((value){
+
                   print("passage");
                   popUpReussi();
                 }).catchError((onError){
