@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m2ilw/controller/info_personnel.dart';
 import 'package:m2ilw/controller/list_personne.dart';
 
 class MainDashBoard extends StatefulWidget {
@@ -15,6 +16,12 @@ class _MainDashBoardState extends State<MainDashBoard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Container(
+        width: MediaQuery.of(context).size.width/1.5,
+        height: MediaQuery.of(context).size.height,
+        color: Colors.white,
+        child: const MyInformation(),
+      ),
       appBar: AppBar(),
       body: bodyPage(),
       bottomNavigationBar: BottomNavigationBar(

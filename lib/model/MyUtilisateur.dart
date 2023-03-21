@@ -14,6 +14,10 @@ class MyUtilisateur {
     return DateTime.now().year - birhday!.year;
   }
 
+  String get nomComplet {
+    return prenom + " " + nom;
+}
+
   //Constructeurs
   MyUtilisateur.empty(){
     id= "";
@@ -36,7 +40,14 @@ class MyUtilisateur {
     mail = map["MAIL"];
     String? avatarProvisoire;
     avatarProvisoire = map["AVATAR"];
-    (avatar == null)?"https://firebasestorage.googleapis.com/v0/b/m2ilw-54738.appspot.com/o/1078454.jpg?alt=media&token=d98a3413-9484-4f3c-b20f-cd341257ebf9":avatarProvisoire;
+    if(avatarProvisoire == null){
+      avatar = "https://firebasestorage.googleapis.com/v0/b/m2ilw-54738.appspot.com/o/1078454.jpg?alt=media&token=d98a3413-9484-4f3c-b20f-cd341257ebf9";
+    }
+    else
+      {
+        avatar = avatarProvisoire;
+      }
+    //(avatar == null)?"https://firebasestorage.googleapis.com/v0/b/m2ilw-54738.appspot.com/o/1078454.jpg?alt=media&token=d98a3413-9484-4f3c-b20f-cd341257ebf9":avatarProvisoire;
     Timestamp timestamp = map["BIRTHDAY"];
     birhday = timestamp.toDate();
 }

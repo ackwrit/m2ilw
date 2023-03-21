@@ -26,6 +26,7 @@ class ListPersonne extends StatelessWidget {
                       color: Colors.grey,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                       child: ListTile(
+
                         title: Text(lesAutres.nom),
                       ),
                     );
