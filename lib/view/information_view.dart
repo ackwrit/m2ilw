@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:m2ilw/globale.dart';
 import 'package:m2ilw/services/firestorhelper.dart';
 import 'dart:io';
 import 'package:lottie/lottie.dart';
+import 'package:m2ilw/view/main_dashboard.dart';
 
 class InformationView extends StatefulWidget {
   const InformationView({Key? key}) : super(key: key);
@@ -73,11 +75,26 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
               title: const Text("Réussi"),
               content : Column(
                 children: [
-                  Lottie.network("https://assets7.lottiefiles.com/packages/lf20_p1laie4m.json"),
+                  Lottie.network("https://assets7.lottiefiles.com/packages/lf20_p1laie4m.json",
+                    repeat: false,
+                    controller: myAnimationController,
+                    onLoaded: (composition){
+                    setState((){
+                      myAnimationController.forward();
+                    });
+
+                    etatAnimation();
+                    }
+                  ),
+
                   //barre de chargement
                   LinearProgressIndicator(
                     valueColor: const AlwaysStoppedAnimation(Colors.green),
+                    backgroundColor: Colors.white,
+                    color: Colors.blue,
                     value: myAnimationController.value,
+                    minHeight: 10,
+                    semanticsValue: "${myAnimationController.duration!.inSeconds.toInt()}",
                   ),
                 ],
               ),
@@ -88,8 +105,32 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
           else
           {
             return AlertDialog(
-              title: const Text("Réussie"),
-              content : Lottie.network("https://assets7.lottiefiles.com/packages/lf20_p1laie4m.json"),
+              title: const Text("Réussi"),
+              content : Column(
+                children: [
+                  Lottie.network("https://assets7.lottiefiles.com/packages/lf20_p1laie4m.json",
+                      repeat: false,
+                      controller: myAnimationController,
+                      onLoaded: (composition){
+                        setState((){
+                          myAnimationController.forward();
+                        });
+
+                        etatAnimation();
+                      }
+                  ),
+
+                  //barre de chargement
+                  LinearProgressIndicator(
+                    valueColor: const AlwaysStoppedAnimation(Colors.green),
+                    backgroundColor: Colors.white,
+                    color: Colors.blue,
+                    value: myAnimationController.value,
+                    minHeight: 10,
+                    semanticsValue: "${myAnimationController.duration!.inSeconds.toInt()}",
+                  ),
+                ],
+              ),
 
 
             );
@@ -100,16 +141,35 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
 
   }
 
+
+  etatAnimation(){
+    myAnimationController.addStatusListener((status) {
+      if(status == AnimationStatus.completed)
+        {
+          Navigator.push(context, MaterialPageRoute(
+              builder: (context){
+                return MainDashBoard();
+              }
+          ));
+        }
+    });
+  }
+
+
+  @override
+  void dispose() {
+    myAnimationController.dispose();
+    super.dispose();
+  }
+
   @override
   void initState() {
     myAnimationController = AnimationController(
         vsync: this,
-      duration: const Duration(seconds: 50),
+      duration: const Duration(seconds: 10),
 
     )..addListener(() {
-      setState(() {
-
-      });
+      setState(() {});
     });
     super.initState();
   }
@@ -130,10 +190,6 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
     return Column(
       children: [
         ToggleButtons(
-            children:  [
-              Text("Connexion"),
-              Text("Inscirption")
-            ],
             isSelected: selection,
           onPressed: (value){
               if(value == 0){
@@ -150,6 +206,10 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
                   });
                 }
           },
+            children: const  [
+              Text("Connexion"),
+              Text("Inscription")
+            ],
         ),
 
         TextField(
@@ -196,37 +256,28 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
 
         ElevatedButton(
             onPressed: (){
+
               if(selection[0]==false){
                 FirestoreHelper().register(mail.text, password.text, nom.text, prenom.text).then((value){
+                  setState(() {
+                    moi = value;
+                  });
 
-                  print("passage");
                   popUpReussi();
                 }).catchError((onError){
-                  print(onError.toString());
-                  //S'il y a un problème
-                  if(onError == null){
-                    popUpReussi();
-                  }
-                  else{
-                    popUp();
-                  }
-
-
+                  popUp();
                 });
               }
               else
                 {
                   FirestoreHelper().connect(mail.text, password.text).then((value){
+                    
+                    setState(() {
+                      moi = value;
+                    });
                       popUpReussi();
                   }).catchError((onError){
-                    if(onError == null){
-                      popUpReussi();
-                    }
-                    else
-                      {
-                        popUp();
-                      }
-
+                    popUp();
                   });
                 }
 

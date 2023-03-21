@@ -27,6 +27,8 @@ class FirestoreHelper{
         Map<String,dynamic> map = {
           "NOM":nom,
           "PRENOM":prenom,
+          "MAIL":email,
+          "BIRTHDAY":DateTime.now()
         };
         addUser(id, map);
         return getUser(id);

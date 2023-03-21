@@ -2,4 +2,8 @@
 
 import 'package:m2ilw/model/MyUtilisateur.dart';
 
-//MyUtilisateur moi;
+MyUtilisateur moi = MyUtilisateur.empty();
+
+//couleur etc...
+
+//image par défaut
