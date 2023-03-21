@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:m2ilw/services/permissionHandler.dart';
 import 'package:m2ilw/view/information_view.dart';
 import 'firebase_options.dart';
 
@@ -8,6 +9,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  PermissionHandler().start();
   runApp(const MyApp());
 }
 
