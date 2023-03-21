@@ -104,7 +104,7 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
   void initState() {
     myAnimationController = AnimationController(
         vsync: this,
-      duration: const Duration(seconds: 10),
+      duration: const Duration(seconds: 50),
 
     )..addListener(() {
       setState(() {
@@ -198,10 +198,18 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
             onPressed: (){
               if(selection[0]==false){
                 FirestoreHelper().register(mail.text, password.text, nom.text, prenom.text).then((value){
+                  print("passage");
                   popUpReussi();
                 }).catchError((onError){
+                  print(onError.toString());
                   //S'il y a un problème
-                  popUp();
+                  if(onError == null){
+                    popUpReussi();
+                  }
+                  else{
+                    popUp();
+                  }
+
 
                 });
               }
@@ -210,7 +218,14 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
                   FirestoreHelper().connect(mail.text, password.text).then((value){
                       popUpReussi();
                   }).catchError((onError){
-                    popUp();
+                    if(onError == null){
+                      popUpReussi();
+                    }
+                    else
+                      {
+                        popUp();
+                      }
+
                   });
                 }
 
