@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:m2ilw/services/firestorhelper.dart';
+import 'dart:io';
+import 'package:lottie/lottie.dart';
 
 class InformationView extends StatefulWidget {
   const InformationView({Key? key}) : super(key: key);
@@ -22,6 +25,38 @@ class _InformationViewState extends State<InformationView> {
     showDialog(
         context: context,
         builder: (context){
+          //déterminer sur quel plateforme on est
+          if(Platform.isIOS){
+            return CupertinoAlertDialog(
+              title: const Text("Erreur"),
+              content : Lottie.network("https://assets10.lottiefiles.com/packages/lf20_ge2cws3x.json"),
+              actions: [
+                TextButton(
+                    onPressed: (){
+                      Navigator.pop(context);
+                    },
+                    child: const Text("OK")
+                )
+              ],
+
+            );
+          }
+          else
+            {
+              return AlertDialog(
+                title: const Text("Erreur"),
+                content : Lottie.network("https://assets10.lottiefiles.com/packages/lf20_ge2cws3x.json"),
+                actions: [
+                  TextButton(
+                      onPressed: (){
+                        Navigator.pop(context);
+                      },
+                      child: const Text("OK")
+                  )
+                ],
+
+              );
+            }
 
         }
     );
@@ -43,8 +78,8 @@ class _InformationViewState extends State<InformationView> {
       children: [
         ToggleButtons(
             children:  [
-              const Text("Connexion"),
-              const Text("Inscirption")
+              Text("Connexion"),
+              Text("Inscirption")
             ],
             isSelected: selection,
           onPressed: (value){
