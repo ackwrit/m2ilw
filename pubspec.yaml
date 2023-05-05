@@ -40,6 +40,7 @@ dependencies:
   firebase_storage: ^11.0.6
   lottie: ^2.3.0
   permission_handler: ^10.2.0
+  file_picker: ^5.2.11
 
 dev_dependencies:
   flutter_test:

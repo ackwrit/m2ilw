@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:m2ilw/globale.dart';
 import 'package:m2ilw/model/MyUtilisateur.dart';
 import 'package:m2ilw/services/firestorhelper.dart';
+import 'package:m2ilw/view/messagerie_view.dart';
 
 class ListPersonne extends StatelessWidget {
   const ListPersonne({Key? key}) : super(key: key);
@@ -21,20 +23,33 @@ class ListPersonne extends StatelessWidget {
                   itemCount: documents.length,
                   itemBuilder: (context,index){
                     MyUtilisateur lesAutres = MyUtilisateur(documents[index]);
-                    return Card(
-                      elevation: 5.0,
-                      color: Colors.grey,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                      child: ListTile(
-                        leading: CircleAvatar(
+                    if(lesAutres.id == moi.id){
+                      return const SizedBox();
+                    }
+                    else {
+                      return Card(
+                        elevation: 5.0,
+                        color: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: ListTile(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(
+                                builder: (context){
+                                  return MessagerieView(autrePersonne: lesAutres,);
+                                }
+                            ));
+                          },
+                          leading: CircleAvatar(
                             radius: 30,
-                          backgroundImage: NetworkImage(lesAutres.avatar!),
-                        ),
+                            backgroundImage: NetworkImage(lesAutres.avatar!),
+                          ),
 
-                        title: Text(lesAutres.nomComplet),
-                        subtitle: Text(lesAutres.mail),
-                      ),
-                    );
+                          title: Text(lesAutres.nomComplet),
+                          subtitle: Text(lesAutres.mail),
+                        ),
+                      );
+                    }
 
                   },
 

@@ -35,8 +35,8 @@ class PermissionHandler{
   Future<PermissionStatus>checkPermissionStorage(PermissionStatus storage) async{
     switch(storage){
       case PermissionStatus.permanentlyDenied : return Future.error("L'utilisateur ne souhaite pas qu'on accéde à ses données personnlles");
-      case PermissionStatus.denied : return Permission.storage.request().then((value) => checkPermissionPhoto(storage));
-      case PermissionStatus.restricted : return Permission.storage.request().then((value) => checkPermissionPhoto(storage));
+      case PermissionStatus.denied : return Permission.storage.request().then((value) => checkPermissionStorage(storage));
+      case PermissionStatus.restricted : return Permission.storage.request().then((value) => checkPermissionStorage(storage));
       case PermissionStatus.limited : return Future.error("l'utilisateur a donné son accord");
       case PermissionStatus.granted : return Future.error("l'utilisateur a donné son accord");
     }

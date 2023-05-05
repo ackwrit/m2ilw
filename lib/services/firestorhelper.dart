@@ -1,4 +1,6 @@
 //Gestion et intéraction avec la base de donnée
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -39,10 +41,24 @@ class FirestoreHelper{
     cloudUsers.doc(uid).set(map);
   }
 
+  updateUser(String uid, Map<String,dynamic> map){
+    cloudUsers.doc(uid).update(map);
+  }
+
   Future<MyUtilisateur> getUser(String uid) async{
     DocumentSnapshot snapshot = await cloudUsers.doc(uid).get();
     return MyUtilisateur(snapshot);
   }
+
+  //upload des images
+Future<String> uploadFiles(String name, String destination, String idUtilisateur, Uint8List datas) async {
+    String url = "";
+    TaskSnapshot snapshot= await storage.ref("$destination/$idUtilisateur/$name").putData(datas);
+    url = await snapshot.ref.getDownloadURL();
+    return url;
+
+
+}
 
 
 }
