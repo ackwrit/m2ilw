@@ -288,7 +288,7 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
                 }
 
             },
-            child: Text("Validation")
+            child: const Text("Validation")
         )
       ],
     );

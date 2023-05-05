@@ -26,8 +26,13 @@ class ListPersonne extends StatelessWidget {
                       color: Colors.grey,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                       child: ListTile(
+                        leading: CircleAvatar(
+                            radius: 30,
+                          backgroundImage: NetworkImage(lesAutres.avatar!),
+                        ),
 
-                        title: Text(lesAutres.nom),
+                        title: Text(lesAutres.nomComplet),
+                        subtitle: Text(lesAutres.mail),
                       ),
                     );
 

@@ -9,6 +9,7 @@ class FirestoreHelper{
   final auth = FirebaseAuth.instance;
   final storage = FirebaseStorage.instance;
   final cloudUsers = FirebaseFirestore.instance.collection("UTILISATEURS");
+  final cloudMessages = FirebaseFirestore.instance.collection("MESSAGES");
 
 
 

@@ -19,10 +19,12 @@ class _MyInformationState extends State<MyInformation> {
             backgroundImage: NetworkImage(moi.avatar!),
           ),
 
-          Text(moi.nomComplet,style: TextStyle(color: Colors.red,fontSize: 30,fontWeight: FontWeight.bold),),
+          Text(moi.nomComplet,style: const TextStyle(color: Colors.red,fontSize: 30,fontWeight: FontWeight.bold),),
 
 
-          Text(moi.mail)
+          Text(moi.mail),
+
+
         ],
 
     );

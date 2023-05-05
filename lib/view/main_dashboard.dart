@@ -38,9 +38,11 @@ class _MainDashBoardState extends State<MainDashBoard> {
             label: "Liste"
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.heart_broken_sharp),
+              icon: Icon(Icons.favorite),
               label: "Favoris"
           ),
+
+
         ],
       ),
     );
