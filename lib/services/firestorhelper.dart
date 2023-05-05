@@ -37,6 +37,35 @@ class FirestoreHelper{
         return getUser(id);
   }
 
+  sendMessage(String texte, MyUtilisateur destinataire, MyUtilisateur sender){
+    DateTime time  = DateTime.now();
+    Map<String,dynamic> map = {
+      "DATE":time,
+      "SENDER":sender.id,
+      "RECEIVER":destinataire.id,
+      "TEXTE":texte
+    };
+    String uid = time.microsecondsSinceEpoch.toString();
+    addMessage(getMessageRef(sender.id, destinataire.id, uid), map);
+
+  }
+
+  String getMessageRef(String emmeteur, String destinaire, String idDate){
+    String resultat ="";
+    List<String> liste= [destinaire,emmeteur];
+    liste.sort((a,b)=>a.compareTo(b));
+    for(var x in liste){
+      resultat += x+"+";
+    }
+    resultat = resultat + idDate;
+    return resultat;
+
+  }
+
+  addMessage(String uid, Map<String,dynamic> map){
+    cloudMessages.doc(uid).set(map);
+  }
+
   addUser(String uid, Map<String,dynamic> map){
     cloudUsers.doc(uid).set(map);
   }
