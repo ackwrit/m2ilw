@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:m2ilw/controller/info_personnel.dart';
 import 'package:m2ilw/controller/list_favoris.dart';
 import 'package:m2ilw/controller/list_personne.dart';
+import 'package:m2ilw/controller/maps_view.dart';
 
 class MainDashBoard extends StatefulWidget {
   const MainDashBoard({Key? key}) : super(key: key);
@@ -63,7 +64,7 @@ class _MainDashBoardState extends State<MainDashBoard> {
         });
       },
       children: const [
-        Text("Afficher une carte"),
+        MapView(),
         ListPersonne(),
         FavorisViewController(),
 

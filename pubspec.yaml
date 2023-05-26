@@ -41,6 +41,8 @@ dependencies:
   lottie: ^2.3.0
   permission_handler: ^10.2.0
   file_picker: ^5.2.11
+  google_maps_flutter: ^2.2.8
+  geolocator: ^9.0.2
 
 dev_dependencies:
   flutter_test:

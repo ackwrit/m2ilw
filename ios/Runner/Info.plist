@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Mon application souhaite accéder à votre position</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Mon application souhaite accéder à votre position</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
     <string>Mon application souhaite accéder à vos photos</string>
     <key>NSPhotoLibraryUsageDescription</key>
