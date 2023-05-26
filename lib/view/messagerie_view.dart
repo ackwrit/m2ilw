@@ -36,6 +36,7 @@ class _MessagerieViewState extends State<MessagerieView> {
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
+            //message qui va être affiché
             Flexible(
                 child: Container(
                   height: MediaQuery.of(context).size.height,
@@ -43,6 +44,7 @@ class _MessagerieViewState extends State<MessagerieView> {
             ),
             ),
             const Divider(height: 1.5,),
+            //message qu'on  tape
             Container(
               color: Colors.grey[300],
               padding: const EdgeInsets.all(10.0),
