@@ -33,7 +33,9 @@ class _MapsControllerViewState extends State<MapsControllerView> {
     return GoogleMap(
         initialCameraPosition: initCamera,
       myLocationEnabled: true,
-      onMapCreated: (controller){
+      onMapCreated: (controller) async{
+          String newStyle = await DefaultAssetBundle.of(context).loadString("lib/services/mapStyle.json");
+          controller.setMapStyle(newStyle);
           controllerMaps.complete(controller);
       },
     );
