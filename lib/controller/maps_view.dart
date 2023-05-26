@@ -19,7 +19,7 @@ class _MapViewState extends State<MapView> {
         builder: (context,position){
           if(position.hasData){
             //s il des coordoonnées gps
-            return const MapsControllerView();
+            return MapsControllerView(maPosistion: position.data!,);
           }
           else
           {
