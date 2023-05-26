@@ -17,7 +17,9 @@ class MapsControllerView extends StatefulWidget {
 class _MapsControllerViewState extends State<MapsControllerView> {
   //variables
   late CameraPosition initCamera;
+  LatLng tourEiffel = const LatLng(47.53956475343463, -0.48398994206471);
   Completer<GoogleMapController> controllerMaps = Completer();
+  Set<Marker> myMarkers = Set();
 
   @override
   void initState() {
@@ -25,14 +27,25 @@ class _MapsControllerViewState extends State<MapsControllerView> {
       "GPS":widget.maPosistion
     };
     FirestoreHelper().updateUser(moi.id, map);
-    initCamera = CameraPosition(target: LatLng(widget.maPosistion.latitude, widget.maPosistion.longitude),zoom: 15);
+    initCamera = CameraPosition(target: LatLng(widget.maPosistion.latitude, widget.maPosistion.longitude),zoom: 12);
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
+    myMarkers.add(
+        Marker(
+            markerId: const MarkerId("0"),
+          position: tourEiffel,
+          infoWindow: const InfoWindow(
+            title: 'tour Eiffel',
+            snippet: 'la dame fer'
+          )
+        ),
+    );
     return GoogleMap(
         initialCameraPosition: initCamera,
       myLocationEnabled: true,
+      markers: myMarkers,
       onMapCreated: (controller) async{
           String newStyle = await DefaultAssetBundle.of(context).loadString("lib/services/mapStyle.json");
           controller.setMapStyle(newStyle);

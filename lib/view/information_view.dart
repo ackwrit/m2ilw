@@ -4,6 +4,7 @@ import 'package:m2ilw/globale.dart';
 import 'package:m2ilw/services/firestorhelper.dart';
 import 'dart:io';
 import 'package:lottie/lottie.dart';
+import 'package:m2ilw/view/backgroundView.dart';
 import 'package:m2ilw/view/main_dashboard.dart';
 
 class InformationView extends StatefulWidget {
@@ -188,7 +189,14 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
         backgroundColor: Colors.transparent,
       ),
       backgroundColor: Colors.amber,
-      body: bodyPage(),
+      extendBodyBehindAppBar: true,
+      body:Stack(
+        children: [
+          BackgroundView(),
+          bodyPage(),
+        ],
+      )
+
     );
   }
 

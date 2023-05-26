@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:m2ilw/services/permissionHandler.dart';
+import 'package:m2ilw/view/backgroundView.dart';
 import 'package:m2ilw/view/information_view.dart';
 import 'firebase_options.dart';
 
@@ -55,12 +56,26 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
 
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child:  bodyPage()
 
       ),
+      extendBodyBehindAppBar: true,
+      body: Stack(
+        children: [
+          BackgroundView(),
+          Padding(
+              padding: const EdgeInsets.all(10.0),
+              child:  Stack(
+                children:  [
+                  const BackgroundView(),
+                  bodyPage()
+                ],
+              )
+
+          ),
+        ],
+      ),
+
+
       backgroundColor: Colors.amber,
 
 
@@ -74,6 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Column(
         children: [
           //Logo
+          const SizedBox(height: 30,),
           Image.asset("assets/logo.png",width: 100,height: 100,),
           const SizedBox(height: 10,),
 
