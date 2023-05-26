@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:m2ilw/controller/info_personnel.dart';
+import 'package:m2ilw/controller/list_favoris.dart';
 import 'package:m2ilw/controller/list_personne.dart';
 
 class MainDashBoard extends StatefulWidget {
@@ -34,6 +35,10 @@ class _MainDashBoardState extends State<MainDashBoard> {
         currentIndex: indexNavigation,
         items: const [
           BottomNavigationBarItem(
+              icon: Icon(Icons.map),
+            label: "carte"
+          ),
+          BottomNavigationBarItem(
               icon: Icon(Icons.list),
             label: "Liste"
           ),
@@ -58,8 +63,9 @@ class _MainDashBoardState extends State<MainDashBoard> {
         });
       },
       children: const [
+        Text("Afficher une carte"),
         ListPersonne(),
-        Text("Second page"),
+        FavorisViewController(),
 
       ],
     );

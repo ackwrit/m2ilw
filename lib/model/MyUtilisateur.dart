@@ -8,6 +8,7 @@ class MyUtilisateur {
   late String mail;
   String? avatar;
   DateTime? birhday;
+  List? favoris;
 
 
   int get age {
@@ -26,6 +27,7 @@ class MyUtilisateur {
     mail="";
     avatar="";
     birhday = DateTime.now();
+    favoris = [];
   }
 
 
@@ -50,6 +52,14 @@ class MyUtilisateur {
     //(avatar == null)?"https://firebasestorage.googleapis.com/v0/b/m2ilw-54738.appspot.com/o/1078454.jpg?alt=media&token=d98a3413-9484-4f3c-b20f-cd341257ebf9":avatarProvisoire;
     Timestamp timestamp = map["BIRTHDAY"];
     birhday = timestamp.toDate();
+    List? tempoList = map["FAVORIS"];
+    if(tempoList == null){
+      favoris = [];
+    }
+    else
+      {
+        favoris = tempoList;
+      }
 }
 
 
