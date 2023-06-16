@@ -286,7 +286,7 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
           ElevatedButton(
               onPressed: (){
 
-                if(selection[0]==false){
+                /*if(selection[0]==false){
                   FirestoreHelper().register(mail.text, password.text, nom.text, prenom.text).then((value){
                     setState(() {
                       moi = value;
@@ -308,7 +308,12 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
                     }).catchError((onError){
                       popUp();
                     });
-                  }
+                  }*/
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context){
+                      return const MainDashBoard();
+                    }
+                ));
 
               },
               child: const Text("Validation")
