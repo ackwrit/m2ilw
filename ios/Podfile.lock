@@ -793,6 +793,42 @@ PODS:
   - SDWebImage (5.15.5):
     - SDWebImage/Core (= 5.15.5)
   - SDWebImage/Core (5.15.5)
+  - Stripe (23.7.1):
+    - StripeApplePay (= 23.7.1)
+    - StripeCore (= 23.7.1)
+    - StripePayments (= 23.7.1)
+    - StripePaymentsUI (= 23.7.1)
+    - StripeUICore (= 23.7.1)
+  - stripe_ios (0.0.1):
+    - Flutter
+    - Stripe (~> 23.7.0)
+    - StripeApplePay (~> 23.7.0)
+    - StripeFinancialConnections (~> 23.7.0)
+    - StripePayments (~> 23.7.0)
+    - StripePaymentSheet (~> 23.7.0)
+    - StripePaymentsUI (~> 23.7.0)
+  - StripeApplePay (23.7.1):
+    - StripeCore (= 23.7.1)
+  - StripeCore (23.7.1)
+  - StripeFinancialConnections (23.7.1):
+    - StripeCore (= 23.7.1)
+    - StripeUICore (= 23.7.1)
+  - StripePayments (23.7.1):
+    - StripeCore (= 23.7.1)
+    - StripePayments/Stripe3DS2 (= 23.7.1)
+  - StripePayments/Stripe3DS2 (23.7.1):
+    - StripeCore (= 23.7.1)
+  - StripePaymentSheet (23.7.1):
+    - StripeApplePay (= 23.7.1)
+    - StripeCore (= 23.7.1)
+    - StripePayments (= 23.7.1)
+    - StripePaymentsUI (= 23.7.1)
+  - StripePaymentsUI (23.7.1):
+    - StripeCore (= 23.7.1)
+    - StripePayments (= 23.7.1)
+    - StripeUICore (= 23.7.1)
+  - StripeUICore (23.7.1):
+    - StripeCore (= 23.7.1)
   - SwiftyGif (5.4.4)
 
 DEPENDENCIES:
@@ -805,6 +841,7 @@ DEPENDENCIES:
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
+  - stripe_ios (from `.symlinks/plugins/stripe_ios/ios`)
 
 SPEC REPOS:
   trunk:
@@ -831,6 +868,14 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SDWebImage
+    - Stripe
+    - StripeApplePay
+    - StripeCore
+    - StripeFinancialConnections
+    - StripePayments
+    - StripePaymentSheet
+    - StripePaymentsUI
+    - StripeUICore
     - SwiftyGif
 
 EXTERNAL SOURCES:
@@ -852,6 +897,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_maps_flutter_ios/ios"
   permission_handler_apple:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
+  stripe_ios:
+    :path: ".symlinks/plugins/stripe_ios/ios"
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
@@ -886,6 +933,15 @@ SPEC CHECKSUMS:
   permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
+  Stripe: fbe3d1d61cba70ac7a920c6097222ba9525352c4
+  stripe_ios: 8e0be46c31e1758756e5fdc1613f751d4d945ae0
+  StripeApplePay: 06e3899c9db102567804b77c41cec2861b5e2c39
+  StripeCore: 9b331e5f9d4067ef7296718c680a73ad6f2d1066
+  StripeFinancialConnections: 7d8116c4dcd3b034f13a181b4d96e6991b594cfc
+  StripePayments: 46fbd561312cb300c93dd855b9c896285c8eb1fb
+  StripePaymentSheet: 016fd1c6053efff1f348fc6f44babecacda9d0af
+  StripePaymentsUI: cb06c01d3c9efde91ebce218f9e4e94e902dd676
+  StripeUICore: a9db3f2a82c932d5ca58dd8fc4ac0a6b72f1ccee
   SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f
 
 PODFILE CHECKSUM: 4a728836b8db9aecf8cffa7a7ed7341bdaa429ef

@@ -125,10 +125,10 @@ class _MyInformationState extends State<MyInformation> {
 
           ElevatedButton(
               onPressed: (){
-                controller.makePayment(amount: '5', currency: 'EUR');
+                controller.makePayment(amount: '1200', currency: 'EUR');
 
               },
-              child: Text("payer")
+              child: const Text("payer")
           )
 
 
