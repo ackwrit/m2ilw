@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:m2ilw/controller/my_animation.dart';
 import 'package:m2ilw/services/permissionHandler.dart';
 import 'package:m2ilw/view/backgroundView.dart';
 import 'package:m2ilw/view/information_view.dart';
@@ -90,50 +91,62 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           //Logo
           const SizedBox(height: 30,),
-          Image.asset("assets/logo.png",width: 100,height: 100,),
+          MyAnimation(
+              time: 1,
+              child: Image.asset("assets/logo.png",width: 100,height: 100,)
+          ),
           const SizedBox(height: 10,),
 
           //Image
-          Container(
-            height: 250,
-            decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(25.0),
-              image: const DecorationImage(
-                image: AssetImage("assets/images.jpg"),
-                fit: BoxFit.fill
-              )
-            ),
+          MyAnimation(
+            time: 2,
+            child: Container(
+              height: 250,
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(25.0),
+                image: const DecorationImage(
+                  image: AssetImage("assets/images.jpg"),
+                  fit: BoxFit.fill
+                )
+              ),
 
+            ),
           ),
           const SizedBox(height: 10,),
 
           //Text d'information
-          const Text("La ligue des justiciers",
-          style: TextStyle(fontSize: 30),
+          MyAnimation(
+            time: 3,
+            child: const Text("La ligue des justiciers",
+            style: TextStyle(fontSize: 30),
+            ),
           ),
           const SizedBox(height: 10,),
 
 
           //Bouton cliquable
-          Container(
-            width: double.infinity,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple,
-                shape: StadiumBorder()
-              ),
-                onPressed: (){
+          MyAnimation(
+            time: 4,
+            child: Container(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.purple,
+                  shape: StadiumBorder()
+                ),
+                  onPressed: (){
 
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context){
-                        return InformationView();
-                      }
-                  ));
-                },
-                child: const Text("Bienvenue",
-                style: TextStyle(fontSize: 25),
-                )
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context){
+                          return InformationView();
+                        }
+                    ));
+                  },
+                  child: const Text("Bienvenue",
+                  style: TextStyle(fontSize: 25),
+                  )
+              ),
             ),
           ),
         ],

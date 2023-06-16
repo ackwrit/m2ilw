@@ -193,7 +193,7 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
       body:Stack(
         children: [
           BackgroundView(),
-          bodyPage(),
+          SafeArea(child: bodyPage()),
         ],
       )
 
@@ -201,104 +201,120 @@ class _InformationViewState extends State<InformationView> with TickerProviderSt
   }
 
   Widget bodyPage(){
-    return Column(
-      children: [
-        ToggleButtons(
-            isSelected: selection,
-          onPressed: (value){
-              if(value == 0){
-                setState(() {
-                  selection[0]=true;
-                  selection[1]=false;
-                });
-              }
-              else
-                {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          ToggleButtons(
+              isSelected: selection,
+            onPressed: (value){
+                if(value == 0){
                   setState(() {
-                    selection[0]=false;
-                    selection[1]=true;
+                    selection[0]=true;
+                    selection[1]=false;
                   });
                 }
-          },
-            children: const  [
-              Text("Connexion"),
-              Text("Inscription")
-            ],
-        ),
-
-        TextField(
-          controller: mail,
-          decoration: const InputDecoration.collapsed(
-              hintText: "Entrer votre adresse"
+                else
+                  {
+                    setState(() {
+                      selection[0]=false;
+                      selection[1]=true;
+                    });
+                  }
+            },
+              children: const  [
+                Text("Connexion"),
+                Text("Inscription")
+              ],
           ),
+          const SizedBox(height: 10),
 
-        ),
+          TextField(
+            controller: mail,
+            decoration: const InputDecoration.collapsed(
+                fillColor: Colors.white,
+                filled: true,
+                hintText: "Entrer votre adresse"
+            ),
 
-        TextField(
-          controller: password,
-          obscureText: true,
-          decoration: const InputDecoration.collapsed(
-              hintText: "Entrer votre password"
           ),
+          const SizedBox(height: 10),
+
+          TextField(
+            controller: password,
+            obscureText: true,
+            decoration: const InputDecoration.collapsed(
+                fillColor: Colors.white,
+                filled: true,
+                hintText: "Entrer votre password"
+            ),
 
 
-        ),
-
-
-        (selection[1]==true)?TextField(
-          controller: prenom,
-
-          decoration: const InputDecoration.collapsed(
-              hintText: "Entrer votre prénom"
           ),
+          const SizedBox(height: 10),
 
 
-        ):Container(),
+          (selection[1]==true)?TextField(
+            controller: prenom,
 
-        (selection[1]==true)?TextField(
-          controller: nom,
-
-          decoration: const InputDecoration.collapsed(
-              hintText: "Entrer votre nom"
-          ),
-
-
-        ):Container(),
+            decoration: const InputDecoration.collapsed(
+                fillColor: Colors.white,
+                filled: true,
+                hintText: "Entrer votre prénom"
+            ),
 
 
+          ):Container(),
+          const SizedBox(height: 10),
+
+          (selection[1]==true)?TextField(
+            controller: nom,
+
+            decoration: const InputDecoration.collapsed(
+                fillColor: Colors.white,
+                filled: true,
+                hintText: "Entrer votre nom"
+            ),
 
 
-        ElevatedButton(
-            onPressed: (){
+          ):Container(),
+          const SizedBox(height: 10),
 
-              if(selection[0]==false){
-                FirestoreHelper().register(mail.text, password.text, nom.text, prenom.text).then((value){
-                  setState(() {
-                    moi = value;
-                  });
 
-                  popUpReussi();
-                }).catchError((onError){
-                  popUp();
-                });
-              }
-              else
-                {
-                  FirestoreHelper().connect(mail.text, password.text).then((value){
-                    
+
+
+          ElevatedButton(
+              onPressed: (){
+
+                if(selection[0]==false){
+                  FirestoreHelper().register(mail.text, password.text, nom.text, prenom.text).then((value){
                     setState(() {
                       moi = value;
                     });
-                      popUpReussi();
+
+                    popUpReussi();
                   }).catchError((onError){
                     popUp();
                   });
                 }
+                else
+                  {
+                    FirestoreHelper().connect(mail.text, password.text).then((value){
 
-            },
-            child: const Text("Validation")
-        )
-      ],
+                      setState(() {
+                        moi = value;
+                      });
+                        popUpReussi();
+                    }).catchError((onError){
+                      popUp();
+                    });
+                  }
+
+              },
+              child: const Text("Validation")
+          )
+        ],
+      ),
     );
   }
 }

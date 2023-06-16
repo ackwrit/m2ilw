@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:m2ilw/globale.dart';
 import 'package:m2ilw/model/MyUtilisateur.dart';
 import 'package:m2ilw/services/firestorhelper.dart';
+import 'package:m2ilw/view/ProfilView.dart';
 import 'package:m2ilw/view/messagerie_view.dart';
 
 class ListPersonne extends StatefulWidget {
@@ -45,9 +46,21 @@ class _ListPersonneState extends State<ListPersonne> {
                                 }
                             ));
                           },
-                          leading: CircleAvatar(
-                            radius: 30,
-                            backgroundImage: NetworkImage(lesAutres.avatar!),
+                          leading: InkWell(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (context){
+                                    return ProfilView(user: lesAutres);
+                                  }
+                              ));
+                            },
+                            child: Hero(
+                              tag: lesAutres.id,
+                              child: CircleAvatar(
+                                radius: 30,
+                                backgroundImage: NetworkImage(lesAutres.avatar!),
+                              ),
+                            ),
                           ),
 
                           title: Text(lesAutres.nomComplet),
