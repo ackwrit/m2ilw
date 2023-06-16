@@ -33,66 +33,70 @@ class _ListPersonneState extends State<ListPersonne> {
                       return const SizedBox();
                     }
                     else {
-                      return Card(
-                        elevation: 5.0,
-                        color: Colors.grey,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: ListTile(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(
-                                builder: (context){
-                                  return MessagerieView(autrePersonne: lesAutres,);
-                                }
-                            ));
-                          },
-                          leading: InkWell(
+                      return Dismissible(
+
+                      key: Key(lesAutres.id),
+                        child: Card(
+                          elevation: 5.0,
+                          color: Colors.grey,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          child: ListTile(
                             onTap: (){
                               Navigator.push(context, MaterialPageRoute(
                                   builder: (context){
-                                    return ProfilView(user: lesAutres);
+                                    return MessagerieView(autrePersonne: lesAutres,);
                                   }
                               ));
                             },
-                            child: Hero(
-                              tag: lesAutres.id,
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundImage: NetworkImage(lesAutres.avatar!),
+                            leading: InkWell(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(
+                                    builder: (context){
+                                      return ProfilView(user: lesAutres);
+                                    }
+                                ));
+                              },
+                              child: Hero(
+                                tag: lesAutres.id,
+                                child: CircleAvatar(
+                                  radius: 30,
+                                  backgroundImage: NetworkImage(lesAutres.avatar!),
+                                ),
                               ),
                             ),
-                          ),
 
-                          title: Text(lesAutres.nomComplet),
-                          subtitle: Text(lesAutres.mail),
-                          trailing: IconButton(
-                            icon: (moi.favoris!.contains(lesAutres.id))?const Icon(Icons.favorite_rounded,color: Colors.red,):const Icon(Icons.favorite_border_rounded),
-                            onPressed: (){
-                              if(moi.favoris!.contains(lesAutres.id)){
-                                //soit il appartaient à mes favoris
-                                setState((){
-                                  moi.favoris!.remove(lesAutres.id);
-                                });
-
-                              }
-                              else
-                                {
-                                  // soit il n'est pas dans mes favoris
-                                  setState(() {
-                                    moi.favoris!.add(lesAutres.id);
+                            title: Text(lesAutres.nomComplet),
+                            subtitle: Text(lesAutres.mail),
+                            trailing: IconButton(
+                              icon: (moi.favoris!.contains(lesAutres.id))?const Icon(Icons.favorite_rounded,color: Colors.red,):const Icon(Icons.favorite_border_rounded),
+                              onPressed: (){
+                                if(moi.favoris!.contains(lesAutres.id)){
+                                  //soit il appartaient à mes favoris
+                                  setState((){
+                                    moi.favoris!.remove(lesAutres.id);
                                   });
 
                                 }
-                              Map<String,dynamic> map = {
-                                "FAVORIS":moi.favoris
-                              };
-                              FirestoreHelper().updateUser(moi.id, map);
+                                else
+                                  {
+                                    // soit il n'est pas dans mes favoris
+                                    setState(() {
+                                      moi.favoris!.add(lesAutres.id);
+                                    });
+
+                                  }
+                                Map<String,dynamic> map = {
+                                  "FAVORIS":moi.favoris
+                                };
+                                FirestoreHelper().updateUser(moi.id, map);
 
 
 
 
 
-                            },
+                              },
+                            ),
                           ),
                         ),
                       );

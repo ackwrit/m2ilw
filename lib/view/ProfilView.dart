@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m2ilw/controller/my_animation.dart';
 import 'package:m2ilw/globale.dart';
 import 'package:m2ilw/model/MyUtilisateur.dart';
 
@@ -11,6 +12,8 @@ class ProfilView extends StatefulWidget {
 }
 
 class _ProfilViewState extends State<ProfilView> {
+  //varibale
+  bool detail = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +28,27 @@ class _ProfilViewState extends State<ProfilView> {
                 backgroundImage: NetworkImage(widget.user.avatar ?? imageDefault),
               ),
             ),
-            Text(widget.user.nomComplet)
+            Text(widget.user.nomComplet),
+            const Text("Description"),
+            ElevatedButton(onPressed: (){
+              setState(() {
+                detail = !detail;
+              });
+            }, child: const Text("Détails"),
+
+            ),
+            AnimatedContainer(
+                height: detail?MediaQuery.of(context).size.height *0.5:0,
+                width: detail?MediaQuery.of(context).size.width:0,
+                duration: const Duration(seconds: 3),
+              color: Colors.red,
+              child: detail?MyAnimation(
+                  time: 1,
+                  child: const Text("dksjfkldfgjdfkgjdfkxj"),
+
+                ):Container(),
+              ),
+
           ],
         ),
       ),

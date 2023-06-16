@@ -2,8 +2,11 @@ import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:m2ilw/controller/payment_controller.dart';
 import 'package:m2ilw/globale.dart';
 import 'package:m2ilw/services/firestorhelper.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 class MyInformation extends StatefulWidget {
   const MyInformation({Key? key}) : super(key: key);
 
@@ -16,6 +19,12 @@ class _MyInformationState extends State<MyInformation> {
   String? urlImage;
   String? nameImage;
   Uint8List? bytesImage;
+
+
+
+
+
+
 
 
   //méthode
@@ -74,9 +83,26 @@ class _MyInformationState extends State<MyInformation> {
     }
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
+    final PaymentController controller = Get.put(PaymentController());
+
+
     return  Column(
 
         children: [
@@ -96,6 +122,14 @@ class _MyInformationState extends State<MyInformation> {
 
 
           Text(moi.mail),
+
+          ElevatedButton(
+              onPressed: (){
+                controller.makePayment(amount: '5', currency: 'EUR');
+
+              },
+              child: Text("payer")
+          )
 
 
         ],
