@@ -46,6 +46,7 @@ dependencies:
   flutter_stripe: ^9.2.1
   http:
   get: ^4.6.5
+  google_ml_kit: ^0.15.0
 
 dev_dependencies:
   flutter_test:
